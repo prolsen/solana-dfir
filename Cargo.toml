@@ -1,0 +1,20 @@
+[package]
+name = "solana-dfir"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+profile-rustflags = []
+
+[profile.release]
+lto = true
+
+[dependencies]
+solana-sdk = "1.15.1"
+solana-client = "1.15.1"
+solana-transaction-status = "1.15.1"
+chrono = "0.4.23"
+serde_json = "1.0.93"
+clap = { version = "4.1.6", features = ["derive"]}
+serde = "1.0.152"
+solana-account-decoder = "1.15.2"
