@@ -3,7 +3,7 @@ use chrono::{DateTime, Utc};
 use solana_client::rpc_client::RpcClient;
 use solana_sdk::{pubkey::Pubkey, signature::Signature};
 
-use crate::utils::utilities::convert_epoch;
+use crate::shared::utilities::convert_epoch;
 
 pub fn get_signatures(rpc: &RpcClient, addr: Pubkey) -> Result<(String, DateTime<Utc>), Box<dyn std::error::Error>> {
 

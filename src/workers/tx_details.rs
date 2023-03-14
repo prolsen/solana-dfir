@@ -7,7 +7,7 @@ use solana_transaction_status::option_serializer::OptionSerializer;
 use std::collections::BTreeMap;
 use serde_json::Value;
 
-pub(crate) fn get_transaction_details(signature: Signature, rpc: &RpcClient) {
+pub(crate) fn _get_transaction_details(signature: Signature, rpc: &RpcClient) {
     let transaction_details: EncodedConfirmedTransactionWithStatusMeta = rpc
         .get_transaction(&signature, UiTransactionEncoding::Json)
         .unwrap();

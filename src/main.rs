@@ -9,9 +9,9 @@ use crate::workers::signatures::get_signatures;
 //use crate::workers::tx_details::get_transaction_details;
 use crate::workers::tokens::get_token;
 
-pub mod utils;
 pub mod connections;
 pub mod workers;
+mod shared;
 
 #[derive(Parser)]
 /// The beginnings of a forensics toolkit for the Solana blockchain. This runs against mainnet-beta.

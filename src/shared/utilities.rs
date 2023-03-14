@@ -1,7 +1,7 @@
 use chrono::{DateTime, LocalResult, TimeZone, Utc};
 use solana_sdk::clock::UnixTimestamp;
 
-pub(crate) fn convert_to_sol(lamports: u64) -> f64 {
+pub(crate) fn _convert_to_sol(lamports: u64) -> f64 {
     lamports as f64 / 1_000_000_000.0
 }
 
