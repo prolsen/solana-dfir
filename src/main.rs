@@ -6,12 +6,13 @@ use solana_sdk::pubkey::Pubkey;
 use crate::connections::clientconnection::build_client;
 
 use crate::workers::signatures::get_signatures;
-//use crate::workers::tx_details::get_transaction_details;
 use crate::workers::tokens::get_token;
+
+use crate::shared::structs::EarliestOutput;
 
 pub mod connections;
 pub mod workers;
-mod shared;
+pub mod shared;
 
 #[derive(Parser)]
 /// The beginnings of a forensics toolkit for the Solana blockchain. This runs against mainnet-beta.
@@ -20,7 +21,7 @@ struct Args {
    #[arg(short, long)]
    addr: String,
 
-    /// Whether or not the address is a Token account
+   /// Whether the address is a Token account
    #[arg(short, long, default_value_t = false)]
    token: bool,
 
@@ -38,30 +39,46 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let addr = Pubkey::from_str(&args.addr.to_string()).unwrap();
 
-    println!("Pubkey: {}", addr.to_string());
+    let pubkey = addr.to_string();
 
     // Passing the RpcClient and Pubkey into the function
     let earliest_signature = get_signatures(&rpc, addr)?;
 
+    // Initialize the mutable variables outside if block
+    let mut first_date = String::new();
+    let mut first_tx = String::new();
+
     // Check the boolean args earliest.
+    // Default is true
     if args.earliest {
-        println!("\tFirst: {} \n\tTx: {}", earliest_signature.1.to_string(), earliest_signature.0.to_string());
-    } else {
-        println!("Only support earliest.")
+        first_date = earliest_signature.0.to_string();
+        first_tx = earliest_signature.1.to_string();
     }
 
-    // Calling get_token
+    // Initialize the mutable variables outside if block
+    let mut mint = None;
+    let mut owner = None;
+
+    // Check the boolean args token.
+    // Default is false needs --token
     if args.token {
         let token = get_token(&rpc, &addr);
-        println!("\tMint: {} \n\tOwner: {}", &token.0, &token.1);
+        mint = token.0;
+        owner = token.1;
     }
 
-    /*
-    let sig = Signature::from_str(&earliest_signature.0).unwrap();
+    // Defining the output via the struct
+    let output = EarliestOutput {
+        pubkey,
+        first_date,
+        first_tx,
+        mint,
+        owner,
+    };
 
-    // Get the transaction details for the respective signature
-    get_transaction_details(sig, &rpc);
-    */
+    let output_json = serde_json::to_string_pretty(&output).unwrap();
+
+    println!("{}", output_json);
 
     Ok(())
 
