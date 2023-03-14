@@ -1,6 +1,8 @@
 # Solana DFIR Tools
 
-The beginning of a set of single purpose. This is mostly a way for me to learn the Rust programming language.
+The beginning of a set of single purpose tools that can be used to perform investigations on the Solana Blockchain. 
+
+Having said that, this is mostly a way for me to learn the Rust programming language.
 
 # Usage
 
