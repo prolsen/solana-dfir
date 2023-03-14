@@ -20,7 +20,7 @@ Options:
 
 #Examples
 
-earliest is a default true, so it will always return earliest. token is default false, so you need to pass --token if you want the mint and owner returned.
+earliest is a default true, so it will always return earliest. token is default false, so you need to pass --token if you want the mint and owner returned. This will also be the same values returned if you pass an account that isn't a token account but use --token.
 
 Passing a token account.
 
@@ -36,29 +36,14 @@ solana-dfir.exe -a 2qFUz6kJ9nxLy32q2885GDNDhhrt8hXz8ohGFAR9Xm2V --token
 }
 ```
 
-Passing a token account.
-
-```commandline
-solana-dfir.exe -a 2qFUz6kJ9nxLy32q2885GDNDhhrt8hXz8ohGFAR9Xm2V
-
-{
-  "pubkey": "2qFUz6kJ9nxLy32q2885GDNDhhrt8hXz8ohGFAR9Xm2V",
-  "first_date": "2021-08-15 01:54:35 UTC",
-  "first_tx": "3kvm9JQ2nebqhZgoTYbRmMF7EUy5WxfhtriKvqqDXeKWDgM2g4eSkH2YV7uJzYV5BdMdXqBpWz3EtPFdxfzkuZ5r",
-  "mint": "G9HLECsin2AGae3P9ro4e9MJqKEafz2reyz4JydvmH9F",
-  "owner": "AmGhEhDEjeVVbQLmw66bDvqfSC5NF1GHBLT3dw4xUphT"
-}
-```
-
 Passing and account that isn't a token account, but maybe you think it is. It will return _null_ for mint and owner.
 
 ```commandline
-solana-dfir.exe -a AcgYLdh8WzzmzTBCANz5mKqSXShTdkfnj7ZZgkqJ1xGd --token
-
+solana-dfir.exe -a 9kFiXsZQHNpvvQb8oiN2sceBdGu81GhNRQ2MZCds8vHi
 {
-  "pubkey": "AcgYLdh8WzzmzTBCANz5mKqSXShTdkfnj7ZZgkqJ1xGd",
-  "first_date": "2022-03-05 19:29:05 UTC",
-  "first_tx": "2nnsVvBjVJR6fHWeg5UkJzstzC3gyyNzmSP5Uz54Vt5D2KjRucG6xHxvUZ4imurDfzKhcDeuMCXaN6dZXFi4BQXf",
+  "pubkey": "9kFiXsZQHNpvvQb8oiN2sceBdGu81GhNRQ2MZCds8vHi",
+  "first_date": "2022-02-19 16:59:21 UTC",
+  "first_tx": "4vteP45iMKuACB6zFT2t4FT32T6pEZM3SF4P9rsLf3WBcAzSt46aziFbefVkz2Hq8FQ8C5tN36ECubif4mEYFxMC",
   "mint": null,
   "owner": null
 }
