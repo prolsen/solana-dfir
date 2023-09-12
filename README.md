@@ -20,7 +20,7 @@ Options:
   -h, --help         Print help
 ```
 
-#Examples
+# Examples
 
 earliest is a default true, so it will always return earliest. token is default false, so you need to pass --token if you want the mint and owner returned. This will also be the same values returned if you pass an account that isn't a token account but use --token.
 
